@@ -10,9 +10,11 @@ jobs:
     strategy:
       matrix:
         stage: [ 'dev', 'uat' ]
+    environment: ${{ matrix.stage }}
     steps:
       - run: echo ${{ vars.FRUIT }}
   test:
+    needs: [ check ]
     name: Test
     strategy:
       matrix:
