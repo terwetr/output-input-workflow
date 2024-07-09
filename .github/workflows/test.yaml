@@ -9,7 +9,7 @@ jobs:
     strategy:
       matrix:
         stage: [ 'dev', 'uat' ]
-    uses: .github/workflows/output-input-workflow.yaml
+    uses: .github/workflows/output-input-workflow.yaml@14397ab752ebb240a2c942953846496b87959d9e
     with:
       environment: ${{ matrix.stage }}
       value-overrides: |
