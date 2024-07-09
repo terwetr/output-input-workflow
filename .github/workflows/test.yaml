@@ -15,6 +15,9 @@ jobs:
       - run: echo "${{ vars.FRUIT }}"
   vars:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        stage: [ 'dev', 'uat' ]
     outputs:
       FRUIT: ${{ vars.FRUIT }}
     steps:
@@ -31,4 +34,4 @@ jobs:
       value-overrides: |
         env=${{ matrix.stage }}
         fruit=${{ vars.FRUIT }}
-        fruit2=${{ vars[matrix.stage].FRUIT }}
+        fruit2=${{ needs.vars.outputs.FRUIT }}
