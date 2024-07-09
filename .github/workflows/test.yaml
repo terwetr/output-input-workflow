@@ -4,6 +4,14 @@ on:
   workflow_dispatch:
 
 jobs:
+  check:
+    name: Check
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        stage: [ 'dev', 'uat' ]
+    steps:
+      - run: echo ${{ vars.FRUIT }}
   test:
     name: Test
     strategy:
