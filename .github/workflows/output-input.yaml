@@ -1,0 +1,24 @@
+name: Output Input
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        description: "Environment to output input"
+        type: string
+        required: true
+      value-overrides:
+        description: "String of value overrides"
+        type: string
+        required: false
+
+jobs:
+  display:
+    name: Display
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    steps:
+      - name: Show inputs
+        shell: bash
+        run: |
+          echo ${{ inputs.value-overrides }}
