@@ -16,5 +16,3 @@ jobs:
         env=${{ matrix.stage }}
         fruit-vars=${{ vars.FRUIT }}
         fruit-vars2=${{ vars[matrix.stage].FRUIT }}
-        fruit-env=${{ env.FRUIT }}
-
