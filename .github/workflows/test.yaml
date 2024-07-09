@@ -19,9 +19,13 @@ jobs:
       matrix:
         stage: [ 'dev', 'uat' ]
     environment: ${{ matrix.stage }}
+    outputs:
+      dev_FRUIT: ${{steps.set-vars.outputs.dev_FRUIT}}
+      uat_FRUIT: ${{steps.set-vars.outputs.uat_FRUIT}}
     steps:
       - run: echo "Setting environment variables... ${{ vars.FRUIT }}"
-      - run: |
+      - id: set-vars
+        run: |
           echo "${{ matrix.stage }}_FRUIT=${{ vars.FRUIT }}" >> $GITHUB_OUTPUT
   test:
     needs: [ check, vars ]
