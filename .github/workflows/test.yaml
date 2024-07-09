@@ -14,16 +14,15 @@ jobs:
     steps:
       - run: echo "${{ vars.FRUIT }}"
   vars:
-    permissions:
-      id-token: write
     runs-on: ubuntu-latest
     strategy:
       matrix:
         stage: [ 'dev', 'uat' ]
+    environment: ${{ matrix.stage }}
     outputs:
       FRUIT: ${{ vars.FRUIT }}
     steps:
-      - run: echo "Setting environment variables, ${{ vars.FRUIT }}"
+      - run: echo "Setting environment variables... ${{ vars.FRUIT }}"
   test:
     needs: [ check, vars ]
     name: Test
