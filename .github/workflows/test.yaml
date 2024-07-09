@@ -23,7 +23,7 @@ jobs:
     outputs:
       FRUIT: ${{ vars.FRUIT }}
     steps:
-      - run: echo "Setting environment variables"
+      - run: echo "Setting environment variables, ${{ vars.FRUIT }}"
   test:
     needs: [ check, vars ]
     name: Test
