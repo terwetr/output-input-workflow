@@ -35,4 +35,4 @@ jobs:
       value-overrides: |
         env=${{ matrix.stage }}
         fruit=${{ vars.FRUIT }}
-        fruit2=${{ needs.vars.outputs.[format('{0}_FRUIT', matrix.stage)] }}
+        fruit2=${{ needs.vars.outputs[format('{0}_FRUIT', matrix.stage)] }}
