@@ -12,9 +12,15 @@ jobs:
         stage: [ 'dev', 'uat' ]
     environment: ${{ matrix.stage }}
     steps:
-      - run: echo ${{ vars.FRUIT }}
+      - run: echo "${{ vars.FRUIT }}"
+  vars:
+    runs-on: ubuntu-latest
+    outputs:
+      FRUIT: ${{ vars.FRUIT }}
+    steps:
+      - run: echo "Setting environment variables"
   test:
-    needs: [ check ]
+    needs: [ check, vars ]
     name: Test
     strategy:
       matrix:
