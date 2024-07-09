@@ -19,10 +19,10 @@ jobs:
       matrix:
         stage: [ 'dev', 'uat' ]
     environment: ${{ matrix.stage }}
-    outputs:
-      FRUIT: ${{ vars.FRUIT }}
     steps:
       - run: echo "Setting environment variables... ${{ vars.FRUIT }}"
+      - run: |
+          echo "${{ matrix.stage }}_FRUIT=${{ vars.FRUIT }}" >> $GITHUB_OUTPUT
   test:
     needs: [ check, vars ]
     name: Test
@@ -35,4 +35,4 @@ jobs:
       value-overrides: |
         env=${{ matrix.stage }}
         fruit=${{ vars.FRUIT }}
-        fruit2=${{ needs.vars.outputs.FRUIT }}
+        fruit2=${{ needs.vars.outputs.[format('{0}_FRUIT', matrix.stage)] }}
