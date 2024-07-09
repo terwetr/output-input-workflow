@@ -14,5 +14,7 @@ jobs:
       environment: ${{ matrix.stage }}
       value-overrides: |
         env=${{ matrix.stage }}
-        fruit=${{ vars.FRUIT }}
+        fruit-vars=${{ vars.FRUIT }}
+        fruit-vars2=${{ vars[matrix.stage].FRUIT }}
+        fruit-env=${{ env.FRUIT }}
 
